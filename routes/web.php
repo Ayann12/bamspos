@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,3 +10,5 @@ Route::get('/', function () {
 
 
 Route::post('/login', [LoginController::class, 'handleLogin'])->name('login');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -1,4 +1,5 @@
-@extends('layouts.app');
+@extends('layouts.app')
+@section('content_title', 'Data Kategory')
 @section('content')
     <div class="card">
         <div class="card-header">

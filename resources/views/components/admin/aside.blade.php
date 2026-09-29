@@ -26,17 +26,23 @@
                   data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                  <li class="nav-item">
-                      <a href="{{ route('dashboard') }}"
-                          class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Dashboard
 
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item menu-open">
+                  @foreach ($routes as $route)
+                      @if (!$route['is_dropdown'])
+                          <li class="nav-item">
+                              <a href="{{ route($route['route_name']) }}"
+                                  class="nav-link {{ request()->routeIs($route['route_active']) ? 'active' : '' }}">
+                                  <i class="nav-icon {{ $route['icon'] }}"></i>
+                                  <p>
+                                      {{ $route['label'] }}
+                                  </p>
+                              </a>
+                          </li>
+                      @endif
+                  @endforeach
+
+
+                  <li class="nav-item {{ request()->routeIs('master-data.*') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link">
                           <i class=" nav-icon fas fa-server"></i>
                           <p>
@@ -46,15 +52,16 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('master-data.kategory.index') }}" class="nav-link">
+                              <a href="{{ route('master-data.kategory.index') }}"
+                                  class="nav-link {{ request()->routeIs('master-data.kategory.*') ? 'active' : '' }} ">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Category</p>
+                                  <p>Kategory</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="#" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Product</p>
+                                  <p>Produk</p>
                               </a>
                           </li>
                       </ul>

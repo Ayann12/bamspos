@@ -11,9 +11,30 @@ class Aside extends Component
     /**
      * Create a new component instance.
      */
+
+    public $routes;
     public function __construct()
     {
-        //
+        $this->routes = [
+            [
+                "label" => "Dashboard",
+                "icon" => "fas fa-tachometer-alt",
+                "route_name" => "dashboard",
+                "route_active" => "dashboard",
+                "is_dropdown" => false
+            ],
+            [
+                "label"         => "Master Data",
+                "icon"          => "fas fa-server",
+                "route_active"  => "master-data.*",
+                "is_dropdown"   => true,
+                "dropdown"      => [
+                    "label" => "Kategory",
+                    "route_active" => "master-data.kategory.*",
+                    "route_name"   => "master-data.kategory.index",
+                ],
+            ]
+        ];
     }
 
     /**

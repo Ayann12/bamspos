@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,4 +14,16 @@ Route::post('/login', [LoginController::class, 'handleLogin'])->name('login')->m
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+
+    // master-data.kategory.index
+    // master.data/kategory/index
+
+    Route::prefix('master-data')->as('master-data.')->group(function () {
+        Route::prefix('kategory')->as('kategory.')->controller(KategoryController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+    });
 });

@@ -38,34 +38,34 @@
                                   </p>
                               </a>
                           </li>
+                      @else
+                          <li class="nav-item {{ request()->routeIs($route['route_active']) ? 'menu-open' : '' }}">
+                              <a href="#" class="nav-link">
+                                  <i class=" nav-icon {{ $route['icon'] }}"></i>
+                                  <p>
+                                      {{ $route['label'] }}
+                                      <i class="right fas fa-angle-left"></i>
+                                  </p>
+                              </a>
+                              <ul class="nav nav-treeview">
+                                  @foreach ($route['dropdown'] as $item)
+                                      <li class="nav-item">
+                                          {{-- <a href="{{ route($item['route_name']) }}"> --}}
+
+                                          </a>
+                                          {{-- <a href="{{ route($item['route_name']) }}"
+                                              class="nav-link {{ request()->routeIs($item['route_active']) ? 'active' : '' }} ">
+                                              <i class="far fa-circle nav-icon"></i>
+                                              <p>{{ $item['label'] }}</p>
+                                          </a> --}}
+                                      </li>
+                                  @endforeach
+                              </ul>
+                          </li>
                       @endif
                   @endforeach
 
 
-                  <li class="nav-item {{ request()->routeIs('master-data.*') ? 'menu-open' : '' }}">
-                      <a href="#" class="nav-link">
-                          <i class=" nav-icon fas fa-server"></i>
-                          <p>
-                              Master Data
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('master-data.kategory.index') }}"
-                                  class="nav-link {{ request()->routeIs('master-data.kategory.*') ? 'active' : '' }} ">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Kategory</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Produk</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
 
               </ul>
           </nav>
